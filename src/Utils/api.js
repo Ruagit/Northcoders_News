@@ -19,12 +19,25 @@ const fetchArticles = slug => {
 };
 
 const fetchArticleByID = article_id => {
-  console.log(article_id, "api");
   return axios
     .get(`https://jlb-news-app.herokuapp.com/api/articles/${article_id}`)
     .then(({ data }) => {
-      console.log(data.article, "data");
       return data.article;
     });
 };
-module.exports = { fetchTopics, fetchArticles, fetchArticleByID };
+
+const fetchComments = article_id => {
+  return axios
+    .get(
+      `https://jlb-news-app.herokuapp.com/api/articles/${article_id}/comments`
+    )
+    .then(({ data }) => {
+      return data.comments;
+    });
+};
+module.exports = {
+  fetchTopics,
+  fetchArticles,
+  fetchArticleByID,
+  fetchComments
+};

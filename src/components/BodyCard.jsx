@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import * as api from "../Utils/api";
 import Loader from "./Loader";
+import { Link, Router } from "@reach/router";
+import Comments from "./Comments";
+import "../App.css";
 
 class BodyCard extends Component {
   state = {
@@ -19,6 +22,7 @@ class BodyCard extends Component {
   render() {
     if (this.state.isLoading) return <Loader />;
     const {
+      article_id,
       title,
       author,
       body,
@@ -28,27 +32,29 @@ class BodyCard extends Component {
     } = this.state.article;
     const date = new Date(created_at).toDateString();
     return (
-      <section className="body">
-        <h2>{title}</h2>
-        <br />
-        <p>{body}</p>
-        <br />
-        <h5>Written by {author}</h5>
-        <h5>{date}</h5>
-        <h6>
-          comments({comment_count}) votes({votes}){" "}
-        </h6>
-      </section>
+      <>
+        <article className="body">
+          <h2>{title}</h2>
+          <br />
+          <p>{body}</p>
+          <br />
+          <h5>Written by {author}</h5>
+          <h5>{date}</h5>
+          <h6>
+            <Link to={`/articles/${article_id}/comments`}>
+              comments({comment_count})
+            </Link>
+            votes({votes}
+          </h6>
+        </article>
+        <section>
+          <Router>
+            <Comments path="/comments" />
+          </Router>
+        </section>
+      </>
     );
   }
 }
 
 export default BodyCard;
-
-// const BodyCard = article_id => {
-//   console.log(article_id);
-
-//   return <section>Hello</section>;
-// };
-
-// export default BodyCard;

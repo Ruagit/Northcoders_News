@@ -5,6 +5,7 @@ import Title from "./components/Title";
 import Navbar from "./components/Navbar";
 import AllArticles from "./components/AllArticles";
 import BodyCard from "./components/BodyCard";
+
 function App() {
   return (
     <div className="App">
@@ -13,7 +14,7 @@ function App() {
       <Router>
         <AllArticles path="/" />
         <AllArticles path="/topic/:slug" />
-        <BodyCard path="/:article_id" />
+        <BodyCard path="/articles/:article_id/*" />
       </Router>
     </div>
   );

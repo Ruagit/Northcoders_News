@@ -15,7 +15,7 @@ const ArticleCard = ({
   return (
     <>
       <article>
-        <Link to={`/${article_id}`}>
+        <Link to={`/articles/${article_id}`}>
           <h2>{title}</h2>
         </Link>
         <ul>
