@@ -8,10 +8,15 @@ const fetchTopics = () => {
     });
 };
 
-const fetchArticles = slug => {
+const fetchArticles = (slug, sort_by, order) => {
+  console.log(sort_by, " in api");
   return axios
     .get("https://jlb-news-app.herokuapp.com/api/articles", {
-      params: { topic: slug }
+      params: {
+        topic: slug,
+        sort_by: sort_by,
+        order: order
+      }
     })
     .then(({ data }) => {
       return data.articles;

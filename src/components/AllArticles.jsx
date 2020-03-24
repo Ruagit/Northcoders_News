@@ -11,8 +11,8 @@ class AllArticles extends Component {
     isLoading: true
   };
 
-  getArticles = () => {
-    api.fetchArticles(this.props.slug).then(articles => {
+  getArticles = (sort_by, order) => {
+    api.fetchArticles(this.props.slug, sort_by, order).then(articles => {
       this.setState({ articles, isLoading: false });
     });
   };
@@ -31,7 +31,7 @@ class AllArticles extends Component {
     if (this.state.isLoading) return <Loader />;
     return (
       <>
-        <SortArticles />
+        <SortArticles getArticles={this.getArticles} />
         <main className={"main"}>
           {this.state.articles.map(article => {
             return <ArticleCard key={article.article_id} {...article} />;
