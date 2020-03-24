@@ -54,13 +54,19 @@ const deleteComment = comment_id => {
 };
 
 const patchCommentVotes = (votes, comment_id) => {
-  return axios
-    .patch(`https://jlb-news-app.herokuapp.com/api/comments/${comment_id}`, {
+  return axios.patch(
+    `https://jlb-news-app.herokuapp.com/api/comments/${comment_id}`,
+    {
       votes
-    })
-    .then(({ data }) => {
-      console.log(data, "data");
-    });
+    }
+  );
+};
+
+const patchArticlesVotes = (votes, article_id) => {
+  return axios.patch(
+    `https://jlb-news-app.herokuapp.com/api/articles/${article_id}`,
+    { votes }
+  );
 };
 
 module.exports = {
@@ -70,5 +76,6 @@ module.exports = {
   fetchComments,
   postComment,
   deleteComment,
-  patchCommentVotes
+  patchCommentVotes,
+  patchArticlesVotes
 };

@@ -3,6 +3,8 @@ import Loader from "./Loader";
 import ArticleCard from "./ArticleCard.jsx";
 import * as api from "../Utils/api";
 import "../App.css";
+import SortArticles from "./SortArticles";
+
 class AllArticles extends Component {
   state = {
     articles: [],
@@ -28,11 +30,14 @@ class AllArticles extends Component {
   render() {
     if (this.state.isLoading) return <Loader />;
     return (
-      <main className={"main"}>
-        {this.state.articles.map(article => {
-          return <ArticleCard key={article.article_id} {...article} />;
-        })}
-      </main>
+      <>
+        <SortArticles />
+        <main className={"main"}>
+          {this.state.articles.map(article => {
+            return <ArticleCard key={article.article_id} {...article} />;
+          })}
+        </main>
+      </>
     );
   }
 }

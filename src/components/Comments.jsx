@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import * as api from "../Utils/api";
 import Loader from "./Loader";
 import "../App.css";
-import Votes from "./Votes"
+import CommentVotes from "./CommentVotes";
 
 class Comments extends Component {
   state = {
@@ -17,7 +17,6 @@ class Comments extends Component {
       this.setState({ comments, isLoading: false });
     });
   };
-
   componentDidMount() {
     this.getComments();
   }
@@ -44,17 +43,7 @@ class Comments extends Component {
     api.deleteComment(id).then(() => {
       this.getComments();
     });
-
-    // .then(() => {
-    //   this.setState(currentState => {
-    //     return { comments: [...currentState.comments] };
-    //   });
-    // });
   };
-
-  updateVotes = (votes) => {
-    api.patchCommentVotes(votes, this.props.)
-  }
 
   render() {
     if (this.state.isLoading) return <Loader />;
@@ -80,9 +69,8 @@ class Comments extends Component {
                 <h6 key={comment.id}>
                   {comment.author}, {date}, Votes {comment.votes}
                 </h6>
-                <Votes {...comment}/>
-                <button>Agree</button>
-                <button>Disagree</button>
+                <CommentVotes {...comment} />
+
                 <p key={comment.comment_id}>{comment.body}</p>
 
                 <button
