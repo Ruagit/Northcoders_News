@@ -39,3 +39,13 @@
   flex-direction: column;
   justify-content: right;
 }
+
+.cominput {
+  width: 100%;
+  background-position: 10px 10px;
+  box-sizing: border-box;
+  padding: 12px 20px 12px 40px;
+}
+.cominput:focus {
+  border: 3px solid #555;
+}

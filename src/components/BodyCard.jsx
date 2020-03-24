@@ -3,11 +3,13 @@ import * as api from "../Utils/api";
 import Loader from "./Loader";
 import { Link, Router } from "@reach/router";
 import Comments from "./Comments";
+
 import "../App.css";
 
 class BodyCard extends Component {
   state = {
     article: {},
+
     isLoading: true
   };
 
@@ -31,9 +33,10 @@ class BodyCard extends Component {
       votes
     } = this.state.article;
     const date = new Date(created_at).toDateString();
+
     return (
       <>
-        <article className="body">
+        <article className="bodycard" key={article_id}>
           <h2>{title}</h2>
           <br />
           <p>{body}</p>
@@ -44,7 +47,7 @@ class BodyCard extends Component {
             <Link to={`/articles/${article_id}/comments`}>
               comments({comment_count})
             </Link>
-            votes({votes}
+            votes({votes})
           </h6>
         </article>
         <section>
