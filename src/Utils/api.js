@@ -74,6 +74,15 @@ const patchArticlesVotes = (votes, article_id) => {
   );
 };
 
+const fetchUsers = () => {
+  return axios
+    .get(`https://jlb-news-app.herokuapp.com/api/users`)
+    .then(({ data }) => {
+      console.log(data);
+      return data.users;
+    });
+};
+
 module.exports = {
   fetchTopics,
   fetchArticles,
@@ -82,5 +91,6 @@ module.exports = {
   postComment,
   deleteComment,
   patchCommentVotes,
-  patchArticlesVotes
+  patchArticlesVotes,
+  fetchUsers
 };

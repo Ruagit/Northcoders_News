@@ -5,15 +5,17 @@ import Title from "./components/Title";
 import Navbar from "./components/Navbar";
 import AllArticles from "./components/AllArticles";
 import BodyCard from "./components/BodyCard";
-
+import Users from "./components/Users";
 function App() {
   return (
     <div className="App">
       <Title />
       <Navbar />
+
       <Router>
-        <AllArticles path="/" />
-        <AllArticles path="/topic/:slug" />
+        <Users path="/" />
+        <AllArticles path="/articles" />
+        <AllArticles path="/articles/topic/:slug" />
         <BodyCard path="/articles/:article_id/*" />
       </Router>
     </div>
