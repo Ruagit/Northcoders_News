@@ -10,14 +10,7 @@ class AllArticles extends Component {
   state = {
     articles: [],
     isLoading: true,
-    error: null,
-    currentUser: ""
-  };
-
-  addCurrentUser = () => {
-    const user = this.props.currentUser;
-
-    this.props.setState({ currentUser: user });
+    error: null
   };
 
   getArticles = (sort_by, order) => {
@@ -51,7 +44,13 @@ class AllArticles extends Component {
         <SortArticles getArticles={this.getArticles} />
         <main className={"main"}>
           {this.state.articles.map(article => {
-            return <ArticleCard key={article.article_id} {...article} />;
+            return (
+              <ArticleCard
+                key={article.article_id}
+                {...article}
+                currentUser={this.props.currentUser}
+              />
+            );
           })}
         </main>
       </>

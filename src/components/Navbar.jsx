@@ -29,12 +29,19 @@ class Navbar extends Component {
 
     return (
       <nav className={"nav"}>
-        <label>current user here</label>
+        <label>
+          {this.props.currentUser
+            ? `${this.props.currentUser}`
+            : "Not yet logged in.."}
+        </label>
         <Link to="/">Login</Link>
-        <Link to="/:currentUser/articles">Home</Link>
+        <Link to={`/${this.props.currentUser}/articles`}>Home</Link>
         {this.state.topics.map(({ slug }) => {
           return (
-            <Link key={slug} to={`/articles/topic/${slug}`}>
+            <Link
+              key={slug}
+              to={`${this.props.currentUser}/articles/topic/${slug}`}
+            >
               {slug}
             </Link>
           );

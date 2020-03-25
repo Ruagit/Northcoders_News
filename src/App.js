@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Router } from "@reach/router";
 import "./App.css";
 import Title from "./components/Title";
@@ -7,25 +7,41 @@ import AllArticles from "./components/AllArticles";
 import BodyCard from "./components/BodyCard";
 import Users from "./components/Users";
 import ErrorHandling from "./components/ErrorHandling";
-function App() {
-  // state:{
-  //   user: ''
-  // }
 
-  return (
-    <div className="App">
-      <Title />
-      <Navbar />
+class App extends Component {
+  state = {
+    currentUser: ""
+  };
 
-      <Router>
-        <Users path="/" />
-        <AllArticles path="/:currentUser/articles" />
-        <AllArticles path="/articles/topic/:slug" />
-        <BodyCard path="/articles/:article_id/*" />
-        <ErrorHandling default />
-      </Router>
-    </div>
-  );
+  setUser = currentUser => {
+    this.setState({ currentUser });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <Title />
+        <Navbar currentUser={this.state.currentUser} />
+
+        <Router>
+          <Users path="/" setUser={this.setUser} />
+          <AllArticles
+            path="/:currentUser/articles"
+            currentUser={this.state.currentUser}
+          />
+          <AllArticles
+            path="/:currentUser/articles/topic/:slug"
+            currentUser={this.state.currentUser}
+          />
+          <BodyCard
+            path="/:currentUser/articles/:article_id/*"
+            currentUser={this.state.currentUser}
+          />
+          <ErrorHandling default />
+        </Router>
+      </div>
+    );
+  }
 }
 
 export default App;

@@ -33,6 +33,10 @@ class Users extends Component {
     this.setState({ currentUser: value });
   };
 
+  handleSetUser = event => {
+    this.props.setUser(this.state.currentUser);
+  };
+
   handleUserCreateChange = event => {
     const { id, value } = event.target;
     this.setState({ [id]: value });
@@ -65,9 +69,11 @@ class Users extends Component {
                 );
               })}
             </select>
-            <Link to={`/${this.state.currentUser}/articles`}>
-              <button>Login</button>
-            </Link>
+            {
+              <Link to={`/${this.state.currentUser}/articles`}>
+                <button onClick={this.handleSetUser}>Login</button>
+              </Link>
+            }
           </section>
 
           <form onSubmit={this.handleSubmit}>

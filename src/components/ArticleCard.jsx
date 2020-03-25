@@ -9,13 +9,14 @@ const ArticleCard = ({
   author,
   comment_count,
   votes,
-  created_at
+  created_at,
+  currentUser
 }) => {
   const date = new Date(created_at).toDateString();
   return (
     <>
       <article>
-        <Link to={`/articles/${article_id}`}>
+        <Link to={`/${currentUser}/articles/${article_id}`}>
           <h2>{title}</h2>
         </Link>
         <ul>

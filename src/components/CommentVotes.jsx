@@ -5,6 +5,7 @@ class CommentVotes extends Component {
   state = {
     newvotes: 0
   };
+
   updateVotes = inc_votes => {
     api.patchCommentVotes(inc_votes, this.props.comment_id);
     this.setState(currenState => {

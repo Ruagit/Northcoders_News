@@ -54,7 +54,9 @@ class BodyCard extends Component {
             {date}
             <br />
             <br />
-            <Link to={`/articles/${article_id}/comments`}>
+            <Link
+              to={`/${this.props.currentUser}/articles/${article_id}/comments`}
+            >
               comments({comment_count})
             </Link>
             <br />
@@ -63,7 +65,11 @@ class BodyCard extends Component {
         </article>
         <section>
           <Router>
-            <Comments path="/comments" />
+            <Comments
+              path="/comments"
+              comment_count={this.state.article.comment_count}
+              currentUser={this.props.currentUser}
+            />
           </Router>
         </section>
       </>

@@ -83,7 +83,6 @@ const fetchUsers = () => {
     });
 };
 const postUser = (username, name, avatar_url) => {
-  console.log(username);
   return axios
     .post(`https://jlb-news-app.herokuapp.com/api/users`, {
       username,
