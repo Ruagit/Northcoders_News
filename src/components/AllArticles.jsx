@@ -8,7 +8,14 @@ import SortArticles from "./SortArticles";
 class AllArticles extends Component {
   state = {
     articles: [],
-    isLoading: true
+    isLoading: true,
+    currentUser: ""
+  };
+
+  addCurrentUser = () => {
+    const user = this.props.currentUser;
+    console.log(user, " in articles");
+    this.props.setState({ currentUser: user });
   };
 
   getArticles = (sort_by, order) => {

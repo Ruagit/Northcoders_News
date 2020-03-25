@@ -14,7 +14,7 @@ function App() {
 
       <Router>
         <Users path="/" />
-        <AllArticles path="/articles" />
+        <AllArticles path="/:currentUser/articles" />
         <AllArticles path="/articles/topic/:slug" />
         <BodyCard path="/articles/:article_id/*" />
       </Router>

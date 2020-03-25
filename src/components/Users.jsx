@@ -6,6 +6,7 @@ import { Link } from "@reach/router";
 class Users extends Component {
   state = {
     users: [],
+    currentUser: "",
     isLoading: true
   };
 
@@ -18,29 +19,35 @@ class Users extends Component {
   componentDidMount() {
     this.getUsers();
   }
+  handleChange = event => {
+    const { value } = event.target;
 
-  handleChange = event => {};
+    this.setState({ currentUser: value });
+  };
+
   render() {
     return (
-      <form>
-        <h3>Please Login</h3>
-        <section className={"users-select"}>
-          <label> User </label>
-          <select>
-            <option value="">Select User</option>
-            {this.state.users.map(user => {
-              return (
-                <option key={user.id} value={user.username}>
-                  {user.username}
-                </option>
-              );
-            })}
-          </select>
-          <Link to="/articles">
-            <button onSubmit={this.handleSubmit}>Login</button>
-          </Link>
-        </section>
-      </form>
+      <>
+        <form>
+          <h3>Please Login</h3>
+          <section className={"users-select"}>
+            <label> User </label>
+            <select onChange={this.handleChange}>
+              <option value="">Select User</option>
+              {this.state.users.map(user => {
+                return (
+                  <option key={user.id} value={user.username}>
+                    {user.username}
+                  </option>
+                );
+              })}
+            </select>
+            <Link to={`/${this.state.currentUser}/articles`}>
+              <button>Login</button>
+            </Link>
+          </section>
+        </form>
+      </>
     );
   }
 }
