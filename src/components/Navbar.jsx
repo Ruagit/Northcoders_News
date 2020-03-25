@@ -2,14 +2,22 @@ import React, { Component } from "react";
 import { Link } from "@reach/router";
 import * as api from "../Utils/api";
 import "../App.css";
+import ErrorHandling from "./ErrorHandling";
 
 class Navbar extends Component {
   state = { topics: [] };
 
   getTopics = () => {
-    api.fetchTopics().then(topics => {
-      this.setState({ topics });
-    });
+    api
+      .fetchTopics()
+      .then(topics => {
+        this.setState({ topics });
+      })
+      .catch(error => {
+        const status = error.response.status;
+        const message = error.response.data.msg;
+        this.setState({ error: { status, message }, isLoading: false });
+      });
   };
 
   componentDidMount() {
@@ -17,6 +25,8 @@ class Navbar extends Component {
   }
 
   render() {
+    if (this.state.error) return <ErrorHandling {...this.state.error} />;
+
     return (
       <nav className={"nav"}>
         <label>current user here</label>

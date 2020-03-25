@@ -50,6 +50,41 @@
   border: 3px solid #555;
 }
 
-.users-select {
-  position: ;
+/* .login {
+  text-align: center;
+} */
+
+.usermain {
+  box-sizing: border-box;
+  padding: 16px;
+  background-color: white;
+}
+.signup {
+  text-align: right;
+}
+.crteurinput {
+  width: 80%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+.crteurinput:focus {
+  border: 3px solid #555;
+}
+.submitbtn {
+  background-color: #852424;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 1;
+}
+
+.submitbtn:hover {
+  opacity: 2;
 }

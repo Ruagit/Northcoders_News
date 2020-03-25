@@ -4,6 +4,7 @@ import Loader from "./Loader";
 import { Link, Router } from "@reach/router";
 import Comments from "./Comments";
 import ArticleVotes from "./ArticleVotes";
+import ErrorHandling from "./ErrorHandling";
 
 import "../App.css";
 
@@ -15,15 +16,23 @@ class BodyCard extends Component {
   };
 
   getArticleByID = () => {
-    api.fetchArticleByID(this.props.article_id).then(article => {
-      this.setState({ article, isLoading: false });
-    });
+    api
+      .fetchArticleByID(this.props.article_id)
+      .then(article => {
+        this.setState({ article, isLoading: false });
+      })
+      .catch(error => {
+        const status = error.response.status;
+        const message = error.response.data.msg;
+        this.setState({ error: { status, message }, isLoading: false });
+      });
   };
   componentDidMount() {
     this.getArticleByID();
   }
   render() {
     if (this.state.isLoading) return <Loader />;
+    if (this.state.error) return <ErrorHandling {...this.state.error} />;
     const {
       article_id,
       title,

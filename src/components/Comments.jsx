@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../Utils/api";
-import Loader from "./Loader";
+
 import "../App.css";
 import CommentVotes from "./CommentVotes";
 
@@ -16,6 +16,11 @@ class Comments extends Component {
     api.fetchComments(this.props.article_id).then(comments => {
       this.setState({ comments, isLoading: false });
     });
+    // .catch(error => {
+    //   const status = error.response.status;
+    //   const message = error.response.data.msg;
+    //   this.setState({ error: { status, message }, isLoading: false });
+    // });
   };
   componentDidMount() {
     this.getComments();
@@ -46,7 +51,7 @@ class Comments extends Component {
   };
 
   render() {
-    if (this.state.isLoading) return <Loader />;
+    const { body } = this.state;
     return (
       <>
         <section className="commentinput">
@@ -58,7 +63,9 @@ class Comments extends Component {
             required
             onChange={this.handleChange}
           />
-          <button onClick={this.handleClick}>Add Comment</button>
+          <button disabled={body.length <= 0} onClick={this.handleClick}>
+            Add Comment
+          </button>
         </section>
 
         <article className="commentsarticle" key={this.props.id}>

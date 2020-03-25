@@ -4,24 +4,33 @@ import ArticleCard from "./ArticleCard.jsx";
 import * as api from "../Utils/api";
 import "../App.css";
 import SortArticles from "./SortArticles";
+import ErrorHandling from "./ErrorHandling";
 
 class AllArticles extends Component {
   state = {
     articles: [],
     isLoading: true,
+    error: null,
     currentUser: ""
   };
 
   addCurrentUser = () => {
     const user = this.props.currentUser;
-    console.log(user, " in articles");
+
     this.props.setState({ currentUser: user });
   };
 
   getArticles = (sort_by, order) => {
-    api.fetchArticles(this.props.slug, sort_by, order).then(articles => {
-      this.setState({ articles, isLoading: false });
-    });
+    api
+      .fetchArticles(this.props.slug, sort_by, order)
+      .then(articles => {
+        this.setState({ articles, isLoading: false });
+      })
+      .catch(error => {
+        const status = error.response.status;
+        const message = error.response.data.msg;
+        this.setState({ error: { status, message }, isLoading: false });
+      });
   };
 
   componentDidMount() {
@@ -36,6 +45,7 @@ class AllArticles extends Component {
 
   render() {
     if (this.state.isLoading) return <Loader />;
+    if (this.state.error) return <ErrorHandling {...this.state.error} />;
     return (
       <>
         <SortArticles getArticles={this.getArticles} />

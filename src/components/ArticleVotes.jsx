@@ -6,7 +6,7 @@ class ArticleVotes extends Component {
     newvotes: 0
   };
   updateVotes = votes => {
-    api.patchArticlesVotes(votes, this.props.comment_id);
+    api.patchArticlesVotes(votes, this.props.article_id);
     this.setState(currenState => {
       return { newvotes: currenState.newvotes + votes };
     });

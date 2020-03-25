@@ -5,10 +5,10 @@ class CommentVotes extends Component {
   state = {
     newvotes: 0
   };
-  updateVotes = votes => {
-    api.patchCommentVotes(votes, this.props.comment_id);
+  updateVotes = inc_votes => {
+    api.patchCommentVotes(inc_votes, this.props.comment_id);
     this.setState(currenState => {
-      return { newvotes: currenState.newvotes + votes };
+      return { newvotes: currenState.newvotes + inc_votes };
     });
   };
   render() {
