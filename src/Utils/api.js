@@ -9,7 +9,6 @@ const fetchTopics = () => {
 };
 
 const fetchArticles = (slug, sort_by, order) => {
-  console.log(sort_by, " in api");
   return axios
     .get("https://jlb-news-app.herokuapp.com/api/articles", {
       params: {

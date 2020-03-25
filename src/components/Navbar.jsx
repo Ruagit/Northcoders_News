@@ -29,20 +29,30 @@ class Navbar extends Component {
 
     return (
       <nav className={"nav"}>
+        <Link to="/">
+          <img
+            alt="scholarimage"
+            src="https://img.icons8.com/nolan/30/google-scholar.png"
+          />
+        </Link>
         <label>
           {this.props.currentUser
-            ? `${this.props.currentUser}`
+            ? `Logged in as ${this.props.currentUser}`
             : "Not yet logged in.."}
         </label>
-        <Link to="/">Login</Link>
-        <Link to={`/${this.props.currentUser}/articles`}>Home</Link>
+        <Link
+          disabled={this.props.set === false}
+          to={`/${this.props.currentUser}/articles`}
+        >
+          <button disabled={this.props.set === false}>Home</button>
+        </Link>
         {this.state.topics.map(({ slug }) => {
           return (
             <Link
               key={slug}
               to={`${this.props.currentUser}/articles/topic/${slug}`}
             >
-              {slug}
+              <button disabled={this.props.set === false}>{slug}</button>
             </Link>
           );
         })}

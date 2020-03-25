@@ -85,6 +85,7 @@ class Comments extends Component {
         <article className="commentsarticle" key={this.props.id}>
           {this.state.comments.map((comment, i) => {
             const date = new Date(comment.created_at).toDateString();
+            console.log(comment, " comment");
             return (
               <section className="commentsbody" key={i}>
                 <h6 key={comment.id}>
@@ -96,6 +97,7 @@ class Comments extends Component {
 
                 <button
                   className={"delbtn"}
+                  disabled={this.props.currentUser !== comment.author}
                   onClick={event => {
                     this.delComment(comment.comment_id);
                   }}

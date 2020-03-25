@@ -7,6 +7,7 @@ class Users extends Component {
   state = {
     users: [],
     currentUser: "",
+    set: false,
     newUsername: "",
     newName: "",
     newAvatar: "",
@@ -18,11 +19,9 @@ class Users extends Component {
       this.setState({ users, isLoading: false });
     });
   };
-
   componentDidMount() {
     this.getUsers();
   }
-
   addUser = user => {
     this.setState(currentState => {
       return { users: [user, ...currentState.users] };
@@ -30,11 +29,14 @@ class Users extends Component {
   };
   handleChange = event => {
     const { value } = event.target;
-    this.setState({ currentUser: value });
+    this.setState({ currentUser: value, set: true });
   };
-
-  handleSetUser = event => {
-    this.props.setUser(this.state.currentUser);
+  handleSignIn = event => {
+    this.props.setUser(this.state.currentUser, this.state.set);
+  };
+  handleSignOut = event => {
+    this.setState({ currentUser: "", set: false });
+    this.props.setUser(this.state.currentUser, this.state.set);
   };
 
   handleUserCreateChange = event => {
@@ -56,11 +58,12 @@ class Users extends Component {
     return (
       <>
         <main className="usermain">
-          <h3 className="login">Please Login</h3>
+          <h3 className="login">Sign In</h3>
+
           <section className={"users-select"}>
             <label> User </label>
             <select onChange={this.handleChange}>
-              <option value="">Select User</option>
+              <option placeholder="Select User"></option>
               {this.state.users.map(user => {
                 return (
                   <option key={user.username} value={user.username}>
@@ -69,17 +72,20 @@ class Users extends Component {
                 );
               })}
             </select>
-            {
-              <Link to={`/${this.state.currentUser}/articles`}>
-                <button onClick={this.handleSetUser}>Login</button>
-              </Link>
-            }
           </section>
+          <br />
+
+          <Link to={`/${this.state.currentUser}/articles`}>
+            <button onClick={this.handleSignIn}>Sign In</button>
+          </Link>
+
+          <br />
+
+          <button onClick={this.handleSignOut}>Sign Out</button>
 
           <form onSubmit={this.handleSubmit}>
             <br />
             <br />
-
             <h3>Sign Up</h3>
             <p>Please fill in this form to create a user.</p>
             <label htmlFor="newUsername">

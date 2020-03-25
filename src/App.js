@@ -10,18 +10,20 @@ import ErrorHandling from "./components/ErrorHandling";
 
 class App extends Component {
   state = {
-    currentUser: ""
+    currentUser: "",
+    set: false
   };
 
-  setUser = currentUser => {
-    this.setState({ currentUser });
+  setUser = (currentUser, set) => {
+    this.setState({ currentUser, set });
   };
 
   render() {
     return (
       <div className="App">
         <Title />
-        <Navbar currentUser={this.state.currentUser} />
+
+        <Navbar currentUser={this.state.currentUser} set={this.state.set} />
 
         <Router>
           <Users path="/" setUser={this.setUser} />
