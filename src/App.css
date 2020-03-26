@@ -1,11 +1,22 @@
+body {
+  /* background-color: rgb(225, 237, 238); */
+  background-color: white;
+  /* rgba(214, 53, 53, 1)
+  rgba(255, 216, 0, 1)
+  rgba(70, 216, 26, 1)
+  rgba(255, 42, 0, 1)
+  rgba(206, 113, 92, 1) */
+}
+
 .App {
+  max-width: 1440px;
   display: grid;
   grid-template-areas:
     "header header header"
     "nav nav nav"
     "main main main";
-  /* grid-template-rows: 100px auto;
-  grid-template-columns: 100px auto; */
+  grid-template-rows: auto auto;
+  grid-template-columns: auto auto;
 }
 
 .nav {
@@ -18,73 +29,225 @@
 }
 
 .titleheader {
-  /* display: flex;
-  flex-direction: row;
-  justify-content: space-evenly; */
+  box-sizing: border-box;
+  background-color: rgb(240, 173, 4);
   text-align: center;
   grid-area: header;
-  font-size: large;
-  display: flex;
-  justify-content: center;
+  padding: 20px 10px;
   border-style: ridge;
-  padding: 25px;
+  border-radius: 100fr;
 }
-/* .titlehead {
-  grid-area: header;
-} */
 
 .main {
   grid-area: main;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: right; */
+}
+.routermain {
+  grid-area: main;
   display: flex;
   flex-direction: column;
-  justify-content: right;
+  justify-content: center;
 }
-
-.cominput {
+.usersMain {
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: black;
+  font-size: 20px;
+  font-style: oblique;
+  padding: 16px 16px;
+  background-color: rgba(145, 141, 179, 0.993);
+}
+.userdrop {
   width: 100%;
-  background-position: 10px 10px;
-  box-sizing: border-box;
-  padding: 12px 20px 12px 40px;
-}
-.cominput:focus {
-  border: 3px solid #555;
+  font-style: oblique;
 }
 
-/* .login {
+.sign-io-btn {
+  width: 100%;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-style: oblique;
+  margin: 4px 2px;
+  display: inline-block;
   text-align: center;
-} */
-
-.usermain {
-  box-sizing: border-box;
-  padding: 16px;
-  background-color: white;
+  text-decoration: none;
+  border: none;
+  background-color: whitesmoke;
+  color: black;
+  border: 2px solid #555555;
 }
+.sign-io-btn:hover {
+  background-color: #852424;
+  color: white;
+}
+
 .signup {
   text-align: right;
 }
 .crteurinput {
-  width: 80%;
+  width: 30%;
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
   border: none;
-  background: #f1f1f1;
+  background: #852424;
 }
 
 .crteurinput:focus {
-  border: 3px solid #555;
+  border: 3px solid #852424;
 }
-.submitbtn {
+.createbtn {
   background-color: #852424;
   color: white;
   padding: 16px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 32.3%;
   opacity: 1;
 }
-
-.submitbtn:hover {
+.createbtn:hover {
   opacity: 2;
+}
+.commentinput {
+  padding-top: 20px;
+}
+
+.commentinput h2 {
+  font-style: oblique;
+}
+.cominput {
+  width: 100%;
+  background-position: 10px 10px;
+  box-sizing: border-box;
+  padding: 12px 20px 12px 40px;
+  border-color: rgb(240, 173, 4);
+}
+.cominput:focus {
+  border: 3px solid black;
+}
+
+.commentsbody {
+  border-bottom-style: dashed;
+  padding-bottom: 10px;
+}
+
+.commentsbody h6 {
+  font-style: oblique;
+  color: #555555;
+}
+
+.sortmain {
+  font-style: oblique;
+}
+.sortmain select {
+  font-style: oblique;
+}
+.artmain {
+  display: grid;
+  grid-template-areas: "art art";
+  box-sizing: border-box;
+  border-style: solid;
+  border-color: black;
+  background-color: white;
+}
+
+.artCard {
+  grid: art;
+  border-style: dotted;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: rgb(13, 37, 47);
+  background-color: rgb(199, 190, 184);
+  font-style: oblique;
+}
+.artCard a {
+  text-decoration: none;
+  color: black;
+}
+.arth2 {
+  padding: 10px;
+}
+
+.bodycard {
+  border-top-style: dashed;
+  border-bottom-style: solid;
+}
+
+.bodycard h2 {
+  font-style: oblique;
+  color: rgb(240, 173, 4);
+}
+
+.bodycard h5 {
+  font-style: oblique;
+  color: rgb(240, 173, 4);
+}
+.bodycard a {
+  text-decoration-style: dotted;
+}
+
+@media (max-width: 425px) {
+  .titleheader {
+    float: none;
+    display: Block;
+    font-size: 50%;
+  }
+  .nav {
+    display: grid;
+    position: relative;
+    font-size: 50%;
+  }
+  .usersMain {
+    font-size: 80%;
+    position: center;
+  }
+  .sign-io-btn {
+    font-size: 80%;
+    position: relative;
+  }
+  .createbtn {
+    font-size: 80%;
+    position: relative;
+  }
+  .crteurinput {
+    font-size: 80%;
+    position: relative;
+  }
+  .userdrop {
+    font-size: 80%;
+    position: relative;
+  }
+  .artmain {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+  }
+  .artCard {
+    font-size: 80%;
+  }
+  .bodycard h2 {
+    font-size: 90%;
+    font-style: oblique;
+  }
+  .artvote button {
+    font-size: 80%;
+  }
+  .commentinput h2 {
+    font-size: 90%;
+  }
+  .commentinput button {
+    font-size: 75%;
+  }
+  .commentvotes button {
+    font-size: 75%;
+  }
+  .commentvotes {
+    font-size: 80%;
+  }
+  .delbtn {
+    font-size: 70%;
+  }
 }

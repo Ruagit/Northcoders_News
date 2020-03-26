@@ -15,8 +15,9 @@ class ArticleVotes extends Component {
     const { newvotes } = this.state;
     return (
       <>
-        <section>
+        <section className={"artvote"}>
           <label> Votes {this.props.votes + newvotes} </label>
+          <br />
           <button
             disabled={newvotes > 0}
             onClick={event => {

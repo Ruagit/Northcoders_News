@@ -16,7 +16,7 @@ class CommentVotes extends Component {
     const { newvotes } = this.state;
     return (
       <>
-        <section>
+        <section className={"commentvotes"}>
           <label> Votes {this.props.votes + newvotes} </label>
           <button
             disabled={newvotes > 0}

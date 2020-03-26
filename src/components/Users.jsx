@@ -38,12 +38,10 @@ class Users extends Component {
     this.setState({ currentUser: "", set: false });
     this.props.setUser(this.state.currentUser, this.state.set);
   };
-
   handleUserCreateChange = event => {
     const { id, value } = event.target;
     this.setState({ [id]: value });
   };
-
   handleSubmit = event => {
     event.preventDefault();
     const { newUsername, newName, newAvatar } = this.state;
@@ -52,18 +50,17 @@ class Users extends Component {
       this.setState({ newUsername: "", newName: "", newAvatar: "" });
     });
   };
-
   render() {
     const { newUsername, newName, newAvatar } = this.state;
     return (
       <>
-        <main className="usermain">
-          <h3 className="login">Sign In</h3>
-
+        <main className={"usersMain"}>
+          <h3 className={"loginh3"}>Sign In</h3>
           <section className={"users-select"}>
-            <label> User </label>
-            <select onChange={this.handleChange}>
-              <option placeholder="Select User"></option>
+            <select className={"userdrop"} onChange={this.handleChange}>
+              <option value="" disabled selected hidden>
+                Select User
+              </option>
               {this.state.users.map(user => {
                 return (
                   <option key={user.username} value={user.username}>
@@ -74,22 +71,21 @@ class Users extends Component {
             </select>
           </section>
           <br />
-
           <Link to={`/${this.state.currentUser}/articles`}>
-            <button onClick={this.handleSignIn}>Sign In</button>
+            <button className={"sign-io-btn"} onClick={this.handleSignIn}>
+              Sign In
+            </button>
           </Link>
-
           <br />
-
-          <button onClick={this.handleSignOut}>Sign Out</button>
-
+          <button className={"sign-io-btn"} onClick={this.handleSignOut}>
+            Sign Out
+          </button>
           <form onSubmit={this.handleSubmit}>
-            <br />
-            <br />
             <h3>Sign Up</h3>
             <p>Please fill in this form to create a user.</p>
             <label htmlFor="newUsername">
               Username:
+              <br />
               <input
                 className="crteurinput"
                 value={newUsername}
@@ -104,6 +100,7 @@ class Users extends Component {
             <br />
             <label htmlFor="newName">
               Name:
+              <br />
               <input
                 className="crteurinput"
                 value={newName}
@@ -118,6 +115,7 @@ class Users extends Component {
             <br />
             <label htmlFor="newAvatar">
               Avatar:
+              <br />
               <input
                 className="crteurinput"
                 value={newAvatar}
@@ -130,7 +128,7 @@ class Users extends Component {
               />
             </label>
             <br />
-            <button className="submitbtn" type="submit">
+            <button className="createbtn" type="submit">
               Create
             </button>
           </form>

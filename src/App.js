@@ -25,7 +25,7 @@ class App extends Component {
 
         <Navbar currentUser={this.state.currentUser} set={this.state.set} />
 
-        <Router>
+        <Router className="routermain">
           <Users path="/" setUser={this.setUser} />
           <AllArticles
             path="/:currentUser/articles"

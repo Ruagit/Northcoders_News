@@ -15,9 +15,9 @@ const ArticleCard = ({
   const date = new Date(created_at).toDateString();
   return (
     <>
-      <article>
+      <article className={"artCard"}>
         <Link to={`/${currentUser}/articles/${article_id}`}>
-          <h2>{title}</h2>
+          <h2 className={"arth2"}>{title}</h2>
         </Link>
         <ul>
           Topic category: {topic}

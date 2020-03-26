@@ -8,7 +8,7 @@ const SortArticles = props => {
   };
 
   return (
-    <section>
+    <section className={"sortmain"}>
       <label> Sort Articles By </label>
       <select name="type" onChange={handleChange}>
         <option value="">Select</option>

@@ -10,6 +10,7 @@ class Comments extends Component {
     comments: [],
     isLoading: true,
     error: null,
+    com_count: 0,
     body: ""
   };
 
@@ -54,11 +55,16 @@ class Comments extends Component {
       });
     this.setState({ body: "" });
   };
-
+  //adding functionality for updating count
   delComment = id => {
     api.deleteComment(id).then(() => {
       this.getComments();
     });
+    this.setState(currenState => {
+      return { com_count: currenState.com_count - 1 };
+    });
+    console.log(this.state.com_count, " com count in comjsx");
+    this.props.updateCommentCount(this.state.com_count);
   };
 
   render() {
@@ -68,6 +74,7 @@ class Comments extends Component {
     return (
       <>
         <section className="commentinput">
+          <h2>Comments</h2>
           <input
             className="cominput"
             placeholder="Your thoughts...."
@@ -85,16 +92,15 @@ class Comments extends Component {
         <article className="commentsarticle" key={this.props.id}>
           {this.state.comments.map((comment, i) => {
             const date = new Date(comment.created_at).toDateString();
-            console.log(comment, " comment");
+
             return (
               <section className="commentsbody" key={i}>
                 <h6 key={comment.id}>
                   {comment.author}, {date}, Votes {comment.votes}
                 </h6>
+                <p key={comment.comment_id}>"{comment.body}"</p>
                 <CommentVotes {...comment} />
-
-                <p key={comment.comment_id}>{comment.body}</p>
-
+                <br />
                 <button
                   className={"delbtn"}
                   disabled={this.props.currentUser !== comment.author}

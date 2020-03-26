@@ -42,7 +42,8 @@ class AllArticles extends Component {
     return (
       <>
         <SortArticles getArticles={this.getArticles} />
-        <main className={"main"}>
+        <br />
+        <main className={"artmain"}>
           {this.state.articles.map(article => {
             return (
               <ArticleCard

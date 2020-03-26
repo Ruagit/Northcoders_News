@@ -11,7 +11,6 @@ import "../App.css";
 class BodyCard extends Component {
   state = {
     article: {},
-
     isLoading: true
   };
 
@@ -30,6 +29,18 @@ class BodyCard extends Component {
   componentDidMount() {
     this.getArticleByID();
   }
+  // Updating comments  - will work for delete and post comment
+  updateCommentCount = num => {
+    const { comment_count } = this.state.article;
+    console.log(num, " num");
+    console.log(comment_count, " cooment _ count");
+    let newCount = comment_count + num;
+    console.log(newCount, "dd");
+    this.setState(currentState => {
+      return { comment_count: currentState.comment_count + num };
+    });
+    console.log(comment_count, " after this setstate");
+  };
   render() {
     if (this.state.isLoading) return <Loader />;
     if (this.state.error) return <ErrorHandling {...this.state.error} />;
@@ -46,7 +57,7 @@ class BodyCard extends Component {
     return (
       <>
         <article className="bodycard" key={article_id}>
-          <h2>{title}</h2>
+          <h2>{title}...</h2>
           <p>{body}</p>
           <h5>
             Written by {author}
@@ -67,8 +78,9 @@ class BodyCard extends Component {
           <Router>
             <Comments
               path="/comments"
-              comment_count={this.state.article.comment_count}
+              comment_count={comment_count}
               currentUser={this.props.currentUser}
+              updateCommentCount={this.updateCommentCount}
             />
           </Router>
         </section>
