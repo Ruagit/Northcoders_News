@@ -37,8 +37,8 @@ class Navbar extends Component {
         </Link>
         <label>
           {this.props.currentUser
-            ? `Logged in as ${this.props.currentUser}`
-            : "Not yet logged in..."}
+            ? `Signed in as ${this.props.currentUser}`
+            : "You have not yet signed in..."}
         </label>
         <Link
           disabled={this.props.set === false}
