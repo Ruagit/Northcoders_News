@@ -5,6 +5,7 @@ import { Link, Router } from "@reach/router";
 import Comments from "./Comments";
 import ArticleVotes from "./ArticleVotes";
 import ErrorHandling from "./ErrorHandling";
+import Users from "./Users";
 
 import "../App.css";
 
@@ -43,6 +44,7 @@ class BodyCard extends Component {
   };
   render() {
     if (this.state.isLoading) return <Loader />;
+    if (this.props.set === false) return <Users />;
     if (this.state.error) return <ErrorHandling {...this.state.error} />;
     const {
       article_id,
@@ -78,8 +80,10 @@ class BodyCard extends Component {
           <Router>
             <Comments
               path="/comments"
+              article_id={article_id}
               comment_count={comment_count}
               currentUser={this.props.currentUser}
+              set={this.props.set}
               updateCommentCount={this.updateCommentCount}
             />
           </Router>

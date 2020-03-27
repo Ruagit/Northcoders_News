@@ -91,7 +91,11 @@ class Users extends Component {
             </button>
           </Link>
           <br />
-          <button className={"sign-io-btn"} onClick={this.handleSignOut}>
+          <button
+            disabled={this.state.set === false}
+            className={"sign-io-btn"}
+            onClick={this.handleSignOut}
+          >
             Sign Out
           </button>
           <form onSubmit={this.handleSubmit}>

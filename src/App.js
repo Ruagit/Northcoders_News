@@ -30,14 +30,17 @@ class App extends Component {
           <AllArticles
             path="/:currentUser/articles"
             currentUser={this.state.currentUser}
+            set={this.state.set}
           />
           <AllArticles
             path="/:currentUser/articles/topic/:slug"
             currentUser={this.state.currentUser}
+            set={this.state.set}
           />
           <BodyCard
             path="/:currentUser/articles/:article_id/*"
             currentUser={this.state.currentUser}
+            set={this.state.set}
           />
           <ErrorHandling default />
         </Router>

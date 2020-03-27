@@ -4,6 +4,7 @@ import Loader from "./Loader";
 import ErrorHandling from "./ErrorHandling";
 import "../App.css";
 import CommentVotes from "./CommentVotes";
+import CommentBox from "./CommentBox";
 
 class Comments extends Component {
   state = {
@@ -15,20 +16,16 @@ class Comments extends Component {
   };
 
   getComments = () => {
-    if (this.props.comment_count > 0) {
-      api
-        .fetchComments(this.props.article_id)
-        .then(comments => {
-          this.setState({ comments, isLoading: false });
-        })
-        .catch(error => {
-          const status = error.response.status;
-          const message = error.response.data.msg;
-          this.setState({ error: { status, message }, isLoading: false });
-        });
-    } else {
-      this.setState({ isLoading: false, error: null });
-    }
+    api
+      .fetchComments(this.props.article_id)
+      .then(comments => {
+        this.setState({ comments, isLoading: false });
+      })
+      .catch(error => {
+        const status = error.response.status;
+        const message = error.response.data.msg;
+        this.setState({ error: { status, message }, isLoading: false });
+      });
   };
   componentDidMount() {
     this.getComments();
@@ -38,23 +35,7 @@ class Comments extends Component {
       return { comments: [comment, ...currentState.comments] };
     });
   };
-  handleChange = event => {
-    const { value } = event.target;
 
-    this.setState({ body: value });
-  };
-  handleClick = () => {
-    api
-      .postComment(
-        this.props.article_id,
-        this.props.currentUser,
-        this.state.body
-      )
-      .then(comment => {
-        this.addComment(comment);
-      });
-    this.setState({ body: "" });
-  };
   //adding functionality for updating count
   delComment = id => {
     api.deleteComment(id).then(() => {
@@ -70,25 +51,14 @@ class Comments extends Component {
   render() {
     if (this.state.isLoading) return <Loader />;
     if (this.state.error) return <ErrorHandling {...this.state.error} />;
-    const { body } = this.state;
+
     return (
       <>
-        <section className="commentinput">
-          <h2>Comments...</h2>
-          <input
-            className="cominput"
-            placeholder="Your thoughts...."
-            type="text"
-            id="postComBody"
-            value={body}
-            required
-            onChange={this.handleChange}
-          />
-
-          <button disabled={body.length <= 0} onClick={this.handleClick}>
-            Add Comment
-          </button>
-        </section>
+        <CommentBox
+          addComment={this.addComment}
+          currentUser={this.props.currentUser}
+          article_id={this.props.article_id}
+        />
 
         <article className="commentsarticle" key={this.props.id}>
           {this.state.comments.map((comment, i) => {

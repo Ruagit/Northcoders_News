@@ -5,6 +5,7 @@ import * as api from "../Utils/api";
 import "../App.css";
 import SortArticles from "./SortArticles";
 import ErrorHandling from "./ErrorHandling";
+import Users from "./Users";
 
 class AllArticles extends Component {
   state = {
@@ -38,6 +39,7 @@ class AllArticles extends Component {
 
   render() {
     if (this.state.isLoading) return <Loader />;
+    if (this.props.set === false) return <Users />;
     if (this.state.error) return <ErrorHandling {...this.state.error} />;
     return (
       <>
