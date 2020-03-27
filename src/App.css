@@ -3,8 +3,6 @@ html {
 }
 body {
   background: url("./images/contactmeimg.jpeg") no-repeat center center fixed;
-
-  /* rgb(240, 173, 4) */
 }
 
 .App {
@@ -18,6 +16,13 @@ body {
   grid-template-columns: auto auto;
 }
 
+.errorhandlemain {
+  color: red;
+  text-align: center;
+  font-weight: bold;
+  font-style: normal;
+  background-color: #dae0e6;
+}
 .nav {
   text-align: center;
   grid-area: nav;

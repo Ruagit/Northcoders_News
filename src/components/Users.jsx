@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as api from "../Utils/api";
 import "../App.css";
 import { Link } from "@reach/router";
+import ErrorHandling from "./ErrorHandling";
 
 class Users extends Component {
   state = {
@@ -11,13 +12,21 @@ class Users extends Component {
     newUsername: "",
     newName: "",
     newAvatar: "",
-    isLoading: true
+    isLoading: true,
+    error: null
   };
 
   getUsers = () => {
-    api.fetchUsers().then(users => {
-      this.setState({ users, isLoading: false });
-    });
+    api
+      .fetchUsers()
+      .then(users => {
+        this.setState({ users, isLoading: false });
+      })
+      .catch(error => {
+        const status = error.response.status;
+        const message = error.response.data.msg;
+        this.setState({ error: { status, message }, isLoading: false });
+      });
   };
   componentDidMount() {
     this.getUsers();
@@ -51,6 +60,7 @@ class Users extends Component {
     });
   };
   render() {
+    if (this.state.error) return <ErrorHandling {...this.state.error} />;
     const { newUsername, newName, newAvatar } = this.state;
     return (
       <>
@@ -72,8 +82,12 @@ class Users extends Component {
           </section>
           <br />
           <Link to={`/${this.state.currentUser}/articles`}>
-            <button className={"sign-io-btn"} onClick={this.handleSignIn}>
-              Sign In
+            <button
+              disabled={this.state.set === false}
+              className={"sign-io-btn"}
+              onClick={this.handleSignIn}
+            >
+              {this.state.set ? "Sign In" : "You havent selected your user"}
             </button>
           </Link>
           <br />
