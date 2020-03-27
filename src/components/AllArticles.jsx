@@ -41,9 +41,9 @@ class AllArticles extends Component {
     if (this.state.error) return <ErrorHandling {...this.state.error} />;
     return (
       <>
-        <SortArticles getArticles={this.getArticles} />
         <br />
         <main className={"artmain"}>
+          <SortArticles getArticles={this.getArticles} />
           {this.state.articles.map(article => {
             return (
               <ArticleCard

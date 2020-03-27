@@ -74,7 +74,7 @@ class Comments extends Component {
     return (
       <>
         <section className="commentinput">
-          <h2>Comments</h2>
+          <h2>Comments...</h2>
           <input
             className="cominput"
             placeholder="Your thoughts...."
@@ -84,6 +84,7 @@ class Comments extends Component {
             required
             onChange={this.handleChange}
           />
+
           <button disabled={body.length <= 0} onClick={this.handleClick}>
             Add Comment
           </button>

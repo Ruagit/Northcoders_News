@@ -19,14 +19,15 @@ const ArticleCard = ({
         <Link to={`/${currentUser}/articles/${article_id}`}>
           <h2 className={"arth2"}>{title}</h2>
         </Link>
+        <p>Article Info...</p>
         <ul>
-          Topic category: {topic}
+          The Topic Category is {topic}
           <br />
-          Author: {author}
+          The author for this is {author}
           <br />
-          {comment_count} Comments
+          {comment_count} Comments on this article
           <br />
-          {votes} Votes
+          {votes} Votes for this one
           <br />
           Written on {date}
         </ul>
